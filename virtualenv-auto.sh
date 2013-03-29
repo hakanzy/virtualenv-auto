@@ -6,16 +6,16 @@ folders="
 "
 
 function cd () {
-        builtin cd "$@"
-        cdir=$(pwd)
+    builtin cd "$@"
+    cdir=$(pwd)
 
-        for folder in $folders; do
-                prdir=$(echo $folder | awk -F'::' '{print $1}')
-                vrdir=$(echo $folder | awk -F'::' '{print $2}')
+    for folder in $folders; do
+        prdir=$(echo $folder | awk -F'::' '{print $1}')
+        vrdir=$(echo $folder | awk -F'::' '{print $2}')
 
-                if [[ $cdir =~ ^$prdir ]] && [[ $VIRTUAL_ENV != $vrdir ]] && [ -f "$vrdir/bin/activate" ]; then
-                        source $vrdir/bin/activate
-                fi
-        done
+        if [[ $cdir =~ ^$prdir ]] && [[ $VIRTUAL_ENV != $vrdir ]] && [ -f "$vrdir/bin/activate" ]; then
+            source $vrdir/bin/activate
+        fi
+    done
 }
 ########## Run Auto Virtualenvs ##########
